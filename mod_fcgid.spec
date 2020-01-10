@@ -34,7 +34,7 @@
 
 Name:		mod_fcgid
 Version:	2.3.9
-Release:	4%{?dist}
+Release:	4%{?dist}.1
 Summary:	FastCGI interface module for Apache 2
 Group:		System Environment/Daemons
 License:	ASL 2.0
@@ -49,6 +49,7 @@ Source10:	fastcgi.te
 Source11:	fastcgi-2.5.te
 Source12:	fastcgi.fc
 Patch0:		mod_fcgid-2.3.4-fixconf-shellbang.patch
+Patch1:		mod_fcgid-2.3.9-segfault-upload.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(id -nu)
 BuildRequires:	httpd-devel >= 2.0, pkgconfig
 Requires:	httpd-mmn = %{_httpd_mmn}
@@ -118,6 +119,7 @@ cp -p %{SOURCE12} fastcgi.fc
 
 # Fix shellbang in fixconf script for our location of sed
 %patch0 -p1
+%patch1 -p1 -b .segfault_upload
 
 %build
 APXS=%{_httpd_apxs} ./configure.apxs
@@ -221,6 +223,10 @@ exit 0
 %endif
 
 %changelog
+* Mon Oct 16 2017 Luboš Uhliarik <luhliari@redhat.com> - 2.3.9-4.1
+- Resolves: #1501307 - mod_fcgid cause Segmentation fault error while doing
+  large file uploads over HTTPS
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.3.9-4
 - Mass rebuild 2014-01-24
 
