@@ -34,7 +34,7 @@
 
 Name:		mod_fcgid
 Version:	2.3.9
-Release:	1%{?dist}
+Release:	4%{?dist}
 Summary:	FastCGI interface module for Apache 2
 Group:		System Environment/Daemons
 License:	ASL 2.0
@@ -221,6 +221,15 @@ exit 0
 %endif
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.3.9-4
+- Mass rebuild 2014-01-24
+
+* Mon Jan 13 2014 Joe Orton <jorton@redhat.com> - 2.3.9-3
+- rebuild for #1029360
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 2.3.9-2
+- Mass rebuild 2013-12-27
+
 * Tue Oct  8 2013 Paul Howarth <paul@city-fan.org> 2.3.9-1
 - Update to 2.3.9
   - SECURITY: Fix possible heap buffer overwrite (CVE-2013-4365)
